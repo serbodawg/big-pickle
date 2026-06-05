@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>SW Test</title></head>
+<body><h1>Service Worker Test</h1>
+<p>Status: <span id="status">checking...</span></p>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(function() {
+    document.getElementById('status').textContent = 'Registered';
+  }).catch(function(e) {
+    document.getElementById('status').textContent = 'Failed: ' + e;
+  });
+} else {
+  document.getElementById('status').textContent = 'Not supported';
+}
+</script>
+</body></html>

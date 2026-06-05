@@ -1,0 +1,13 @@
+/* Pastel Dark Blue theme */
+[data-theme="pastel-dark-blue"] {
+  --bg-page: #1b1d2e;
+  --bg-card: #232540;
+  --bg-header: #2d2f50;
+  --bg-footer: #2d2f50;
+  --text: #d8daf0;
+  --text-muted: #8889a8;
+  --accent: #7c8cf0;
+  --accent-hover: #6a7ae0;
+  --border: #343660;
+  --shadow: rgba(0,0,0,0.3);
+}
