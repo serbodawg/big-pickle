@@ -1,1 +1,0 @@
-{"type":"object","properties":{"version":{"type":"integer"},"exported":{"type":"string"},"projects":{"type":"array","items":{"$ref":"#/definitions/Project"}}},"required":["version","projects"]}
