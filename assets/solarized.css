@@ -1,0 +1,13 @@
+/* Solarized theme */
+[data-theme="solarized"] {
+  --bg-page: #002b36;
+  --bg-card: #073642;
+  --bg-header: #073642;
+  --bg-footer: #073642;
+  --text: #839496;
+  --text-muted: #657b83;
+  --accent: #b58900;
+  --accent-hover: #cb4b16;
+  --border: #586e75;
+  --shadow: rgba(0,0,0,0.5);
+}

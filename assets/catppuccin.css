@@ -1,0 +1,13 @@
+/* Catppuccin theme */
+[data-theme="catppuccin"] {
+  --bg-page: #1e1e2e;
+  --bg-card: #272741;
+  --bg-header: #313151;
+  --bg-footer: #313151;
+  --text: #cdd6f4;
+  --text-muted: #9399b2;
+  --accent: #cba6f7;
+  --accent-hover: #b4befe;
+  --border: #45475a;
+  --shadow: rgba(0,0,0,0.3);
+}

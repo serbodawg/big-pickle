@@ -1,0 +1,13 @@
+/* Nord theme */
+[data-theme="nord"] {
+  --bg-page: #2e3440;
+  --bg-card: #3b4252;
+  --bg-header: #434c5e;
+  --bg-footer: #434c5e;
+  --text: #eceff4;
+  --text-muted: #8fbcbb;
+  --accent: #88c0d0;
+  --accent-hover: #81a1c1;
+  --border: #4c566a;
+  --shadow: rgba(0,0,0,0.4);
+}
