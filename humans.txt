@@ -1,6 +1,0 @@
-/* TEAM */
-Developer: serbodawg
-Site: big-pickle — Project Showcase
-
-/* THANKS */
-GitHub for hosting
