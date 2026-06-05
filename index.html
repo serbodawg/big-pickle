@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="pickle-green" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="site_title">Project Showcase</title>
+<meta name="description" content="Open-source project portfolio">
+<meta name="robots" content="index, follow">
+
+<!-- CSP -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; script-src 'self'; connect-src 'none'; base-uri 'self'; frame-ancestors 'none';">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<script>if(top!==self)top.location.href=self.location.href;</script>
+
+<!-- ===== DEVICE SELECTOR ===== -->
+<div id="device-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="device-title">
+  <div class="device-modal-content">
+    <h2 id="device-title" data-i18n="device_title">What device are you using?</h2>
+    <p class="device-desc" data-i18n="device_desc">Select your device for optimal layout.</p>
+    <div class="device-options">
+      <button class="device-opt" data-device="tv" title="TV">
+        <span class="device-icon">&#128250;</span>
+        <span class="device-label" data-i18n="device_tv">TV</span>
+      </button>
+      <button class="device-opt" data-device="pc" title="PC">
+        <span class="device-icon">&#128187;</span>
+        <span class="device-label" data-i18n="device_pc">PC</span>
+      </button>
+      <button class="device-opt" data-device="phone" title="Phone">
+        <span class="device-icon">&#128241;</span>
+        <span class="device-label" data-i18n="device_phone">Phone</span>
+      </button>
+      <button class="device-opt" data-device="tablet" title="Tablet">
+        <span class="device-icon">&#128431;</span>
+        <span class="device-label" data-i18n="device_tablet">Tablet</span>
+      </button>
+    </div>
+    <button class="device-auto" id="device-auto-btn" data-i18n="device_auto">Auto-detect</button>
+  </div>
+</div>
+
+<!-- ===== LOGIN MODAL ===== -->
+<div id="login-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+  <div class="modal modal-small">
+    <div class="modal-header">
+      <h2 id="login-title" data-i18n="login_title">Admin Login</h2>
+      <button class="modal-close" id="login-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <form id="login-form" class="modal-form" autocomplete="off">
+      <div class="login-field">
+        <label for="login-password" id="login-label" data-i18n="login_password">Master Password</label>
+        <input type="password" id="login-password" class="login-input" autocomplete="new-password" maxlength="128" spellcheck="false" required>
+      </div>
+      <div id="login-error" class="login-error" hidden></div>
+      <div id="login-lockout" class="login-lockout" hidden></div>
+      <div class="login-hint" id="login-hint" hidden></div>
+      <div class="form-footer">
+        <button type="submit" id="login-submit" class="btn btn-primary" data-i18n="login_unlock">Unlock</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<a href="#main" class="skip-link" data-i18n="skip_nav">Skip to main content</a>
+
+<!-- ===== HEADER ===== -->
+<header class="header" role="banner">
+  <div class="header-inner container">
+    <div class="brand">
+      <span class="brand-icon">&#9670;</span>
+      <span class="brand-text" data-i18n="site_title">Project Showcase</span>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <ul class="nav-list">
+        <li><a href="#" class="nav-link active" data-page="home" data-i18n="nav_home">Home</a></li>
+        <li><a href="#" class="nav-link" data-page="security" data-i18n="nav_security">Security</a></li>
+        <li><a href="#" class="nav-link admin-only" data-page="dashboard" data-i18n="nav_dashboard">Dashboard</a></li>
+        <li><a href="#" class="nav-link admin-only" data-page="settings" data-i18n="nav_settings">Settings</a></li>
+      </ul>
+    </nav>
+    <div class="header-controls">
+      <div class="switcher lang-switcher">
+        <button class="switcher-btn lang-current" aria-haspopup="true" aria-label="Switch language">EN</button>
+        <ul class="switcher-menu lang-menu" role="menu">
+          <li role="none"><button role="menuitem" class="lang-opt active" data-lang="en">English</button></li>
+          <li role="none"><button role="menuitem" class="lang-opt" data-lang="pl">Polski</button></li>
+          <li role="none"><button role="menuitem" class="lang-opt" data-lang="ru">Русский</button></li>
+        </ul>
+      </div>
+      <div class="switcher theme-switcher">
+        <button class="switcher-btn theme-btn" aria-haspopup="true" aria-label="Switch theme">&#9681;</button>
+        <ul class="switcher-menu theme-menu" role="menu">
+          <li role="none"><button role="menuitem" class="theme-opt active" data-theme="pickle-green" data-i18n="theme_green">Pickle Green</button></li>
+          <li role="none"><button role="menuitem" class="theme-opt" data-theme="pastel-dark" data-i18n="theme_pastel">Pastel Dark Blue</button></li>
+          <li role="none"><button role="menuitem" class="theme-opt" data-theme="catppuccin" data-i18n="theme_catppuccin">Catppuccin</button></li>
+        </ul>
+      </div>
+      <div class="shield" id="shield-badge" title="Security status: Protected">
+        <span class="shield-icon">&#128737;</span>
+        <span class="shield-text" data-i18n="shield_protected">Protected</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main container" role="main">
+
+  <!-- ===== PAGE: Home (public portfolio) ===== -->
+  <section id="page-home" class="page active">
+    <div class="hero">
+      <div class="hero-icon">&#9670;</div>
+      <h1 class="hero-title" data-i18n="hero_title">Open Source Projects</h1>
+      <p class="hero-desc" data-i18n="hero_desc">A collection of tools and utilities built with passion.</p>
+    </div>
+
+    <!-- Stats bar (admin only) -->
+    <div class="stats-bar admin-only">
+      <div class="stat"><span class="stat-value" id="stat-projects">0</span><span class="stat-label" data-i18n="stat_projects">Projects</span></div>
+      <div class="stat"><span class="stat-value" id="stat-total-downloads">0</span><span class="stat-label" data-i18n="stat_downloads">Downloads</span></div>
+      <div class="stat"><span class="stat-value" id="stat-storage">0 KB</span><span class="stat-label" data-i18n="stat_storage">Storage</span></div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <label for="search-input" class="sr-only" data-i18n="search_projects">Search projects</label>
+        <input type="search" id="search-input" class="search-input" placeholder="Search projects..." data-i18n-placeholder="search_placeholder" autocomplete="off">
+      </div>
+      <div class="filter-group" role="group" aria-label="Filter by category">
+        <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+      </div>
+      <button id="add-project-btn" class="btn btn-primary btn-icon admin-only" data-i18n="add_project">+ Add Project</button>
+    </div>
+
+    <!-- Export/Import bar (admin only) -->
+    <div class="data-actions admin-only">
+      <button id="export-btn" class="btn btn-secondary btn-small" data-i18n="export_data">Export Data</button>
+      <button id="import-btn" class="btn btn-secondary btn-small" data-i18n="import_data">Import Data</button>
+      <input type="file" id="import-file" accept=".json" style="display:none">
+    </div>
+
+    <!-- Public project grid -->
+    <div id="empty-state" class="empty-state" hidden>
+      <div class="empty-icon">&#128194;</div>
+      <h2 data-i18n="no_projects">No Projects Yet</h2>
+      <p data-i18n="no_projects_desc">Projects will appear here once added.</p>
+    </div>
+    <div class="projects-grid" id="projects-grid" role="list"></div>
+  </section>
+
+  <!-- ===== PAGE: Security ===== -->
+  <section id="page-security" class="page">
+    <h1 data-i18n="security_title">Security Overview</h1>
+    <div class="security-panel">
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_csp">Content Security Policy</strong><p data-i18n="sec_csp_desc">Script injection and data exfiltration blocked.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_xss">XSS Prevention</strong><p data-i18n="sec_xss_desc">All user input is sanitized; no innerHTML with user data.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_clickjack">Clickjacking Protection</strong><p data-i18n="sec_clickjack_desc">Frame-busting script and CSP frame-ancestors 'none' active.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_storage">Storage Integrity</strong><p data-i18n="sec_storage_desc">localStorage data is checksum-verified against tampering.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon" id="sec-devtools-icon">&#9989;</span>
+        <div><strong data-i18n="sec_devtools">DevTools Detection</strong><p data-i18n="sec_devtools_desc">Developer tools usage is detected and logged.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_rate">Rate Limiting</strong><p data-i18n="sec_rate_desc">Form submissions are throttled to prevent abuse.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_console">Console Protection</strong><p data-i18n="sec_console_desc">Console overwriting attempts are monitored.</p></div>
+      </div>
+      <div class="security-item">
+        <span class="sec-icon">&#9989;</span>
+        <div><strong data-i18n="sec_frame">Frame Busting</strong><p data-i18n="sec_frame_desc">Page cannot be loaded inside an iframe.</p></div>
+      </div>
+    </div>
+    <div class="security-log">
+      <h2 data-i18n="sec_log">Security Log</h2>
+      <div id="security-log-list" class="log-list"></div>
+      <button id="clear-log-btn" class="btn btn-secondary btn-small" data-i18n="clear_log">Clear Log</button>
+    </div>
+  </section>
+
+  <!-- ===== PAGE: Dashboard (admin only) ===== -->
+  <section id="page-dashboard" class="page">
+    <h1 data-i18n="admin_dashboard">Admin Dashboard</h1>
+    <p class="page-sub" data-i18n="admin_dashboard_desc">Manage your projects from here.</p>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <label for="search-input-admin" class="sr-only" data-i18n="search_projects">Search projects</label>
+        <input type="search" id="search-input-admin" class="search-input" placeholder="Search projects..." autocomplete="off">
+      </div>
+      <button id="add-project-btn-admin" class="btn btn-primary btn-icon" data-i18n="add_project">+ Add Project</button>
+    </div>
+    <div class="data-actions">
+      <button id="export-btn-admin" class="btn btn-secondary btn-small" data-i18n="export_data">Export Data</button>
+      <button id="import-btn-admin" class="btn btn-secondary btn-small" data-i18n="import_data">Import Data</button>
+      <input type="file" id="import-file-admin" accept=".json" style="display:none">
+      <button id="publish-btn" class="btn btn-primary btn-small admin-only" data-i18n="publish_btn">Publish to Site</button>
+      <span id="publish-status" class="publish-status"></span>
+    </div>
+    <div id="admin-grid" class="projects-grid" role="list"></div>
+  </section>
+
+  <!-- ===== PAGE: Settings ===== -->
+  <section id="page-settings" class="page">
+    <h1 data-i18n="settings_title">Settings</h1>
+    <div class="settings-panel">
+      <div class="setting-group">
+        <h2 data-i18n="settings_theme">Theme</h2>
+        <div class="setting-options">
+          <button class="theme-opt setting-btn active" data-theme="pickle-green">Pickle Green</button>
+          <button class="theme-opt setting-btn" data-theme="pastel-dark">Pastel Dark Blue</button>
+          <button class="theme-opt setting-btn" data-theme="catppuccin">Catppuccin</button>
+        </div>
+      </div>
+      <div class="setting-group">
+        <h2 data-i18n="settings_language">Language</h2>
+        <div class="setting-options">
+          <button class="lang-opt setting-btn active" data-lang="en">English</button>
+          <button class="lang-opt setting-btn" data-lang="pl">Polski</button>
+          <button class="lang-opt setting-btn" data-lang="ru">Русский</button>
+        </div>
+      </div>
+      <div class="setting-group">
+        <h2 data-i18n="settings_data">Data Management</h2>
+        <div class="setting-actions">
+          <button id="settings-export" class="btn btn-secondary" data-i18n="export_data">Export Data</button>
+          <button id="settings-import" class="btn btn-secondary" data-i18n="import_data">Import Data</button>
+          <button id="settings-clear" class="btn btn-danger admin-only" data-i18n="clear_all">Clear All Data</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== MODAL: Add/Edit Project ===== -->
+<div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title" data-i18n="add_project">Add Project</h2>
+      <button class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+    </div>
+    <form id="project-form" class="modal-form" novalidate>
+      <input type="hidden" id="form-id" value="">
+      <input type="hidden" id="form-token" value="">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="form-name" data-i18n="project_name">Project Name *</label>
+          <input type="text" id="form-name" required maxlength="100" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="form-version" data-i18n="project_version">Version</label>
+          <input type="text" id="form-version" maxlength="20" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="form-desc" data-i18n="project_desc">Description *</label>
+        <textarea id="form-desc" required maxlength="2000" rows="3"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="form-category" data-i18n="project_category">Category</label>
+          <input type="text" id="form-category" maxlength="40" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="form-tags" data-i18n="project_tags">Tags (comma-separated)</label>
+          <input type="text" id="form-tags" maxlength="300" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="form-download" data-i18n="project_download">Download URL</label>
+          <input type="url" id="form-download" maxlength="500" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="form-source" data-i18n="project_source">Source URL</label>
+          <input type="url" id="form-source" maxlength="500" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="form-website" data-i18n="project_website">Website URL</label>
+        <input type="url" id="form-website" maxlength="500" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="form-screenshot" data-i18n="project_screenshot">Screenshot URL</label>
+        <input type="url" id="form-screenshot" maxlength="500" autocomplete="off">
+      </div>
+      <div class="form-section">
+        <h3 data-i18n="changelog">Changelog</h3>
+        <div id="changelog-entries" class="changelog-entries"></div>
+        <button type="button" id="add-cl-entry" class="btn btn-secondary btn-small" data-i18n="add_entry">+ Add Entry</button>
+      </div>
+      <div class="form-footer">
+        <button type="button" class="btn btn-secondary" id="modal-cancel-btn" data-i18n="cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="modal-save-btn" data-i18n="save">Save Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===== MODAL: Confirm ===== -->
+<div id="confirm-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-title" hidden>
+  <div class="modal modal-small">
+    <div class="modal-header">
+      <h2 id="confirm-title" data-i18n="confirm_delete">Delete Project</h2>
+      <button class="modal-close" id="confirm-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p id="confirm-msg" data-i18n="confirm_delete_msg">Are you sure you want to delete this project?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="confirm-no" data-i18n="cancel">Cancel</button>
+      <button class="btn btn-danger" id="confirm-yes" data-i18n="delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL: Pickle Access Denied ===== -->
+<div id="pickle-modal" class="modal-overlay" role="dialog" aria-modal="true" hidden>
+  <div class="pickle-modal-content">
+    <div class="pickle-icon">&#129517;</div>
+    <h1 class="pickle-text" data-i18n="pickle_denied">ACCESS DENIED</h1>
+    <p class="pickle-sub" data-i18n="pickle_sub">This area is for the Pickle Master only!</p>
+    <button class="btn btn-primary" id="pickle-go-home" data-i18n="pickle_home">Go Home</button>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner container">
+    <div class="footer-row">
+      <p><span data-i18n="footer_secured">Secured with</span> &#128737; <span data-i18n="footer_antihacker">Anti-Hacker Protection</span></p>
+      <p class="footer-small"><span data-i18n="footer_local">All data stored locally.</span></p>
+    </div>
+    <div class="footer-admin">
+      <button id="login-btn" class="footer-admin-btn" title="Admin">&#128272;</button>
+      <button id="logout-btn" class="footer-admin-btn admin-only" hidden title="Logout">&#128682;</button>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
